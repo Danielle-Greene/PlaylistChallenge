@@ -10,20 +10,26 @@ public class Music {
         this.playList = playList;
     }
 
-    public Integer selection(Integer startIndex, String selection){
+    public Integer selection(Integer startIndex, String selection) {
 
-        ArrayList<Integer> songs = new ArrayList<Integer>();
+        int interval = -1;
 
-        for (int i = 0; i < playList.length; i++){
+        for (int i = 0; i < playList.length; i++) {
 
-            if (playList[i].equals(selection)){
-                songs.add(i);
+            if (playList[i].equals(selection)) {
+                interval = i;
             }
         }
 
-        songs.add(songs.get(songs.size() - 1) - playList.length);
-        songs.add(songs.get(0) + playList.length);
-        
-        return null;
+    int forward = Math.abs(interval - startIndex);
+        int backward = playList.length - Math.abs(interval - startIndex);
+        if (forward < backward){
+
+            return forward;
+        }
+        else {
+
+            return backward;
+        }
     }
 }
